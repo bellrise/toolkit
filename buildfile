@@ -7,3 +7,6 @@
 
 @dbytes
 	clang -Wall -Wextra -o /usr/local/bin/dbytes dbytes.c
+
+@resolve
+	clang -Wall -Wextra -o /usr/local/bin/resolve resolve.c

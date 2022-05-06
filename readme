@@ -1,4 +1,38 @@
 toolkit
--------
+=======
 
 My personal command line toolkit, composed of tiny programs.
+
+
+dbytes
+------
+
+Dump bytes from a file in hexadecimal format, similar to what xxd does.
+I needed a lightweight tool for dumping bytes without the need of installing
+vim. Example:
+
+	00000000 : 746f 6f6c 6b69 740a 3d3d 3d3d 3d3d 3d0a : toolkit.=======.
+	00000010 : 0a4d 7920 7065 7273 6f6e 616c 2063 6f6d : .My personal com
+	00000020 : 6d61 6e64 206c 696e 6520 746f 6f6c 6b69 : mand line toolki
+
+The data is split into 3 sections, the offset from the beginning of the file,
+the hex bytes themselfs and the ASCII representation of the bytes. Anything
+that is not printable is replaced with a dot. In order to only get the bytes,
+you can use either cut or awk:
+
+	$ dbytes file | cut -d: -f2
+	$ dbytes file | awk -F' : ' '{ print $2 }'
+
+
+resolve
+-------
+
+Resolve a hostname and get the IP address for it. Returns nothing if the host
+name resolution fails. For example:
+
+	$ resolve localhost
+	172.0.0.1
+
+You can check the result in a shell script:
+
+	[ -z "$(resolve $DOMAIN)" ] || echo 'Domain exists'
