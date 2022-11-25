@@ -1,9 +1,4 @@
 /* Utility similar to default xxd, without vim.
-   Because of the formatting of this program, you can easily parse it
-   using awk. For example, to print only the hex bytes:
-
-   $ dbytes <file> | awk -F' : ' '{ print $2 }'
-
    Copyright (c) 2022 bellrise */
 
 #include <string.h>
@@ -19,14 +14,18 @@ int main(int argc, char **argv)
 	FILE *f;
 
 	/* RSD 3/2: required argument --help */
-	if (argc < 2 || !strcmp(argv[1], "--help")) {
-		puts("usage: dbytes <file>");
+	if (argc > 1 && !strcmp(argv[1], "--help")) {
+		puts("usage: dbytes [file]");
 		return EINVAL;
 	}
 
-	if (!(f = fopen(argv[1], "r"))) {
-		printf("No such file or directory: %s\n", argv[1]);
-		return ENOENT;
+	if (argc < 2) {
+		f = stdin;
+	} else {
+		if (!(f = fopen(argv[1], "r"))) {
+			printf("No such file or directory: %s\n", argv[1]);
+			return ENOENT;
+		}
 	}
 
 	/* Each line in dbytes represents 16 bytes. To not load the whole
@@ -47,4 +46,7 @@ int main(int argc, char **argv)
 			fputc(buf[i] >= 0x20 && buf[i] <= 0x7e ? buf[i] : '.', stdout);
 		fputc('\n', stdout);
 	}
+
+	if (argc > 1)
+		fclose(f);
 }

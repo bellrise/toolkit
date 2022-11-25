@@ -6,7 +6,7 @@
 	echo 'usage: build <program>'
 
 @dbytes
-	clang -Wall -Wextra -o /usr/local/bin/dbytes dbytes.c
+	clang -Wall -Wextra -o /usr/local/bin/dbytes dbytes.c -fsanitize=address
 
 @resolve
 	clang -Wall -Wextra -o /usr/local/bin/resolve resolve.c

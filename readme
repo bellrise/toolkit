@@ -23,6 +23,10 @@ you can use either cut or awk:
 	$ dbytes file | cut -d: -f2
 	$ dbytes file | awk -F' : ' '{ print $2 }'
 
+If no filename is given, dbytes will try to read from stdin.
+
+	$ cat somefile | dbytes
+
 
 resolve
 -------
