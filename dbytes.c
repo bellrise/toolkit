@@ -1,5 +1,5 @@
 /* Utility similar to default xxd, without vim.
-   Copyright (c) 2022 bellrise */
+   Copyright (c) 2022-2023 bellrise */
 
 #include <string.h>
 #include <stdio.h>

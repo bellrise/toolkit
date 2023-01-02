@@ -1,5 +1,5 @@
 /* Resolve a domain name & show all results from <netdb.h>.
-   Copyright (c) 2022 bellrise */
+   Copyright (c) 2022-2023 bellrise */
 
 #include <arpa/inet.h>
 #include <string.h>
