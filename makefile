@@ -11,3 +11,6 @@ resolve:
 
 sdc:
 	@$(CC) -Wall -Wextra -o /usr/local/bin/sdc sdc.c
+
+dpluginfo:
+	@$(CC) -Wall -Wextra -o /usr/local/bin/dpluginfo -ldl dpluginfo.c
